@@ -102,13 +102,6 @@ mv /usr/local/bin/composer.phar /usr/local/bin/composer
 # Install current version of application to web root
 ##########
 cp -R /vagrant/* /var/www
-chown -R vagrant:vagrant /var/www
-mkdir -p /var/www/app/cache
-mkdir -p /var/www/app/logs
-setfacl -Rm u:vagrant:rwx /var/www/app/cache /var/www/app/logs
-setfacl -dRm u:vagrant:rwx /var/www/app/cache /var/www/app/logs
-setfacl -Rm u:www-data:rwx /var/www/app/cache /var/www/app/logs
-setfacl -dRm u:www-data:rwx /var/www/app/cache /var/www/app/logs
 
 ##########
 # Restart all newly installed services
