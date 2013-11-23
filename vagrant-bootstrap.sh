@@ -18,13 +18,9 @@ apt-get update
 ##########
 apt-get -y install apache2
 
-# Create basic web directory
-rm -rf /var/www/*
-mkdir /var/www/web
-
 # Set the correct Symfony document root
 cat /etc/apache2/sites-available/000-default.conf \
-  | sed 's/DocumentRoot \/var\/www/DocumentRoot \/var\/www\/web/' \
+  | sed 's/DocumentRoot \/var\/www/DocumentRoot \/var\/www/' \
   > /etc/apache2/sites-available/000-default.new
 mv /etc/apache2/sites-available/000-default.new /etc/apache2/sites-available/000-default.conf
 
@@ -102,6 +98,7 @@ mv /usr/local/bin/composer.phar /usr/local/bin/composer
 # Install current version of application to web root
 ##########
 cp -R /vagrant/* /var/www
+chown -R vagrant:vagrant /var/www
 
 ##########
 # Restart all newly installed services
